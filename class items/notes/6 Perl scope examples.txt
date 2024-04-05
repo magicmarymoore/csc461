@@ -1,0 +1,53 @@
+#run here: https://www.tutorialspoint.com/execute_perl_online.php
+#static scope
+$N = 4;
+sub first
+{
+    $N = $N + 2;
+}
+
+sub second
+{
+    my $N = 0; #'my' marks as static and shadowed
+    first();
+    print $N." ";
+}
+
+
+second();
+print $N."\n";
+
+#---------------------------------------------------------
+#dynamic scope
+$N = 4;
+sub first1
+{
+    $N = $N + 2;
+}
+
+sub second1
+{
+    local $N = 0;  #'local' marks as dynamic and shadowed
+    first1();
+    print $N." ";
+}
+second1();
+print $N."\n";
+
+#---------------------------------------------------------
+#global scope
+$N = 4;
+sub first2
+{
+    $N = $N + 2;
+}
+
+sub second2
+{
+    $N = 0; # nothing marks as global
+    first2();
+    print $N." ";
+}
+
+second2();
+print $N." ";

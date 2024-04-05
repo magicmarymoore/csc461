@@ -1,0 +1,161 @@
+#static scope, and shallow binding (perl does not support use without declare so those are commented out)
+sub A{
+   #my $d = 2; # this is GLOBAL in perl without my or local
+
+   $C = sub{
+       print("\nX: " . $d); #point X
+   };
+   
+   return $C;
+}
+
+sub B{
+   #$d = 3;  #point Y  this is GLOBAL in perl without my or local
+   print("\nY: " . $d);
+   
+   $foo = A();
+   return $foo;
+}
+
+sub main(){
+   my $d = 4;
+   $foo2 = B();
+   &$foo2(); #point Z
+   print("\nZ: " . $d);
+}
+
+main();
+
+#---------------------------------------------------------------------------------------------------------------
+#static scope, and deep binding (perl does not support use without declare so those are commented out)
+sub A{
+   my $d = 2;
+
+   $C = sub{
+       print("\nX: " . $d); #point X
+   };
+   
+   return $C;
+}
+
+sub B{
+   #$d = 3;  #point Y  GLOBAL in perl without my or local
+   print("\nY: " . $d); 
+   
+   $foo = A();
+   return $foo;
+}
+
+sub main(){
+   my $d = 4;
+   $foo2 = B();
+   &$foo2(); #point Z
+   print("\nZ: " . $d);
+}
+
+main();
+
+#---------------------------------------------------------------------------------------------------------------
+#dynamic scope, and shallow binding 
+sub A{
+   local $d = 2;
+
+   $C = sub{
+       print("\nX: " . $d); #point X
+   };
+   
+   return $C;
+}
+
+sub B{
+   $d = 3;  #point Y  
+   print("\nY: " . $d);
+   
+   $foo = A();
+   return $foo;
+}
+
+sub main(){
+   local $d = 4;
+   $foo2 = B();
+   &$foo2(); #point Z
+   print("\nZ: " . $d);
+}
+
+main();
+
+#---------------------------------------------------------------------------------------------------------------
+#dynamic scope, and deep binding 
+#severely hacked with hashed and binding environments
+
+# Create a new scalar,
+# and return a reference to it:
+sub makeScalarRef($)
+{ return \(shift); }
+
+# Bind the specified function to the  environment
+sub saveRefEnv
+{
+  my $deep ={ %{ @_[0] } };
+  my $foo = @_[1];
+  return sub { $foo->($deep, @_); };
+}
+  
+ sub A{
+    #copy in reference environment
+    my $deep = shift;
+    my $saveRefEnv = $deep->{d};
+    
+    local $d = 2;
+    $deep->{d} = makeScalarRef($d);  #copy to reference env too
+    
+   $C = sub{
+        #copy in reference environment
+        my $deep = shift;
+        my $saveOldD = $deep->{d};
+    
+        print("\nX: " . ${$deep->{d}}); #point X
+       
+        #restore reference environment
+        $deep->{d} = $saveRefEnv;
+   };
+   
+   #save reference environment with the function that needs it
+   $C_Bound =  saveRefEnv($deep, $C);
+   
+   #restore reference environment
+   $deep->{d} = $saveRefEnv;
+   return $C_Bound;
+}
+
+sub B{
+     #copy in reference environment
+     my $deep = shift;
+     $saveRefEnv  = $deep->{d};
+     
+     $d = 3;  #$d = 3;  #point Y  
+     $deep->{d} = makeScalarRef($d);  
+     
+     print("\nY: " .  ${$deep->{d}});
+   
+     $foo = A($deep);
+     
+     #restore reference environment
+     $deep->{d} = $saveRefEnv;
+     return $foo;
+}
+
+sub main(){
+    local $d = 4;
+    
+     #make reference environment hash
+    my $deep = {}; #hash to fake it
+    $deep->{d}; #save ref
+    
+    $foo2 = B($deep);
+    &$foo2($deep); #point Z
+    print("\nZ: " . $d);
+}
+
+main();
+

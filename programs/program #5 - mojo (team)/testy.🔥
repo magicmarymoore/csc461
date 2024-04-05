@@ -1,0 +1,12 @@
+def main():
+    print("writing to file 1")
+    var  f = open("booo.txt", "r")
+    #print(f.read())
+    f.write("i hate everything :)")
+    f.close()
+
+    print("done with file 1...\nwriting to file 2")
+    with open("ahh.txt", 'w') as file:
+        file.write("hello world!")
+    
+    print("dont with file 2...")

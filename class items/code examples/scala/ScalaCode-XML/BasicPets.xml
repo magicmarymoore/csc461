@@ -1,0 +1,9 @@
+<pets>
+    <owner name="Harold">
+        <pet species="Cat">Patty</pet>
+        <pet species="Dog">Snoopy</pet>
+    </owner>
+    <owner name="Bob">
+        <pet species="Hamster">Hammy</pet>
+    </owner>
+</pets>

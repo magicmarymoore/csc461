@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pets>
+    <owner name="Harold"/>
+    <pet species="Cat"></pet>
+    <pet>Patty</pet>
+    <pet species="Dog" color="Spotted">Snoopy</pet>
+    <pet species="Cat">text<something></something></pet>
+</pets>

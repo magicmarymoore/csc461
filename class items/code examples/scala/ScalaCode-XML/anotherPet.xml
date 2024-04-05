@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pets><owner name="Harold"></owner><pet species="Cat"></pet><pet species="">Patty</pet><pet species="Dog">Snoopy</pet><pet species="Cat">text</pet><pet species="hamster">Hammy</pet></pets>

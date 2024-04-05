@@ -1,0 +1,60 @@
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜_X( 0)_〜〜〜〜〜〜〜〜〜
+ 〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜.......〜〜〜〜〜〜〜〜〜
+ 
+ 1) Add Default Boat
+ 2) Update One Tick
+ 3) Update X Ticks
+ 4) Show Section Details
+ 5) Add Boat
+ 6) Make Tester
+ 7) Make New Simulator
+ 0) Quit
+ 
+ Choice:> [34m[01m1[0m
+Traceback (most recent call last):> [34m[01m1[0m
+   File "/Users/marymoore/Downloads/RiverLock-Starter-2/moore_mary/MainStarter.py", line 51, in main
+     print(river)
+   File "/Users/marymoore/Downloads/RiverLock-Starter-2/moore_mary/RiverSystem.py", line 47, in __str__
+     bottom += part.printIds()
+   File "/Users/marymoore/Downloads/RiverLock-Starter-2/moore_mary/Section.py", line 18, in printIds
+     output = ''.join([x.printIds() for x in self.units])
+   File "/Users/marymoore/Downloads/RiverLock-Starter-2/moore_mary/Section.py", line 18, in <listcomp>
+     output = ''.join([x.printIds() for x in self.units])
+ AttributeError:> [34m[01m0[0m
+'Boat' object has no attribute 'printIds'
+ 
+ 
+ 1) Add Default Boat
+ 2) Update One Tick
+ 3) Update X Ticks
+ 4) Show Section Details
+ 5) Add Boat
+ 6) Make Tester
+ 7) Make New Simulator
+ 0) Quit
+ 
+ Choice:> [34m[01mNULL[0m
+Traceback (most recent call last):> [34m[01mNULL[0m
+   File "/Users/marymoore/Downloads/RiverLock-Starter-2/moore_mary/MainStarter.py", line 51, in main
+     print(river)
+   File "/Users/marymoore/Downloads/RiverLock-Starter-2/moore_mary/RiverSystem.py", line 47, in __str__
+     bottom += part.printIds()
+   File "/Users/marymoore/Downloads/RiverLock-Starter-2/moore_mary/Section.py", line 18, in printIds
+     output = ''.join([x.printIds() for x in self.units])
+   File "/Users/marymoore/Downloads/RiverLock-Starter-2/moore_mary/Section.py", line 18, in <listcomp>
+     output = ''.join([x.printIds() for x in self.units])
+ AttributeError:> [34m[01mNULL[0m
+'Boat' object has no attribute 'printIds'
+ 
+ 
+ 1) Add Default Boat
+ 2) Update One Tick
+ 3) Update X Ticks
+ 4) Show Section Details
+ 5) Add Boat
+ 6) Make Tester
+ 7) Make New Simulator
+ 0) Quit
+ 
+ Choice:> [34m[01mNULL[0m
+ 
